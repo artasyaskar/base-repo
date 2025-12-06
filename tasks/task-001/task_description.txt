@@ -1,0 +1,52 @@
+task_description: |
+Task: Implement Basic Array Operations API
+Instructions:
+You need to implement basic array operations in the C Data Structures & Algorithms platform. The task involves adding three new endpoints to handle array operations:
+
+1. POST /api/array/sum - Calculate the sum of elements in an integer array
+2. POST /api/array/reverse - Reverse the elements of an array
+3. POST /api/array/max - Find the maximum element in an array
+
+Each endpoint should accept a JSON payload with an "array" field containing an array of integers and return the appropriate result.
+
+Background:
+The platform currently supports data structures and algorithms but lacks basic array operations that are fundamental for learning C programming.
+
+Critical tested requirements:
+- POST /api/array/sum should return {"sum": <calculated_sum>} for valid input
+- POST /api/array/reverse should return {"reversed": <reversed_array>} for valid input  
+- POST /api/array/max should return {"max": <maximum_value>} for valid input
+- All endpoints should handle empty arrays appropriately
+- All endpoints should validate input and return proper error messages for invalid data
+
+Steps:
+1. Create a new route file: server/routes/array.js
+2. Implement the three array operation endpoints
+3. Add the route to the main server file (server/index.js)
+4. Ensure proper input validation and error handling
+5. Test all endpoints with various input scenarios
+
+Expected functionality:
+- Array sum endpoint calculates the sum of all integers in the input array
+- Array reverse endpoint returns the input array in reverse order
+- Array max endpoint returns the largest integer in the input array
+- Empty array handling: sum returns 0, reverse returns empty array, max returns appropriate error
+- Input validation: ensure array contains only integers
+
+Technical requirements:
+- Use Express.js for routing
+- Implement proper error handling with appropriate HTTP status codes
+- Add input validation to ensure array contains integers only
+- Return JSON responses with consistent structure
+- Handle edge cases like empty arrays and non-numeric inputs
+
+Success criteria:
+- All three endpoints respond correctly to valid requests
+- Proper error handling for invalid inputs
+- Consistent JSON response format
+- Integration with existing server architecture
+
+difficulty: easy
+category: Feature
+tags: [array, basic-operations, api, express]
+parser_name: pytest

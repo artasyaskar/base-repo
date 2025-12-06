@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    build: ../../
+    image: c-ds-algo-platform:latest
+    command: ["./run_tests.sh", "task-001"]
+    environment:
+      - TASK_ID=task-001
+    volumes:
+      - ../../:/app
+      - ./task_tests.py:/app/tasks/task-001/task_tests.py
