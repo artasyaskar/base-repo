@@ -1,6 +1,6 @@
 const express = require('express');
 const Algorithm = require('../models/Algorithm');
-const { authMiddleware } = require('../middleware/auth');
+const authMiddleware = require('../middleware/auth');
 const router = express.Router();
 
 // Get all algorithms

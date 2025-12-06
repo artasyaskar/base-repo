@@ -1,6 +1,6 @@
 const express = require('express');
 const DataStructure = require('../models/DataStructure');
-const { authMiddleware } = require('../middleware/auth');
+const authMiddleware = require('../middleware/auth');
 const router = express.Router();
 
 // Get all data structures
