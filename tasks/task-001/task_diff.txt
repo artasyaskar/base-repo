@@ -7,7 +7,7 @@ index 7790528..1ae37cb 100644
  app.use('/api/compiler', require('./routes/compiler'));
  app.use('/api/users', require('./routes/users'));
 +app.use('/api/array', require('./routes/array'));
- 
+
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/array.js b/server/routes/array.js
@@ -22,22 +22,22 @@ index 0000000..2d381fa
 +// Validate array input
 +const validateArray = (req, res, next) => {
 +  const { array } = req.body;
-+  
++
 +  if (!array) {
 +    return res.status(400).json({ error: 'Array field is required.' });
 +  }
-+  
++
 +  if (!Array.isArray(array)) {
 +    return res.status(400).json({ error: 'Array must be an array.' });
 +  }
-+  
++
 +  // Check if all elements are numbers
 +  for (const element of array) {
 +    if (typeof element !== 'number' || isNaN(element)) {
 +      return res.status(400).json({ error: 'All array elements must be numbers.' });
 +    }
 +  }
-+  
++
 +  next();
 +};
 +
@@ -67,11 +67,11 @@ index 0000000..2d381fa
 +router.post('/max', validateArray, (req, res) => {
 +  try {
 +    const { array } = req.body;
-+    
++
 +    if (array.length === 0) {
 +      return res.status(400).json({ error: 'Array cannot be empty for max operation.' });
 +    }
-+    
++
 +    const max = Math.max(...array);
 +    res.json({ max });
 +  } catch (error) {
