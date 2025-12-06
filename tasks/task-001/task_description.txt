@@ -14,10 +14,11 @@ The platform currently supports data structures and algorithms but lacks basic a
 
 Critical tested requirements:
 - POST /api/array/sum should return {"sum": <calculated_sum>} for valid input
-- POST /api/array/reverse should return {"reversed": <reversed_array>} for valid input  
+- POST /api/array/sum should handle empty arrays and return {"sum": 0}
+- POST /api/array/reverse should return {"reversed": <reversed_array>} for valid input
 - POST /api/array/max should return {"max": <maximum_value>} for valid input
-- All endpoints should handle empty arrays appropriately
-- All endpoints should validate input and return proper error messages for invalid data
+- POST /api/array/max should handle negative numbers correctly
+- POST /api/array/sum should validate input and return 400 error for missing array field
 
 Steps:
 1. Create a new route file: server/routes/array.js
@@ -30,15 +31,15 @@ Expected functionality:
 - Array sum endpoint calculates the sum of all integers in the input array
 - Array reverse endpoint returns the input array in reverse order
 - Array max endpoint returns the largest integer in the input array
-- Empty array handling: sum returns 0, reverse returns empty array, max returns appropriate error
-- Input validation: ensure array contains only integers
+- Empty array handling: sum returns 0, reverse returns empty array
+- Input validation: ensure required fields are present
 
 Technical requirements:
 - Use Express.js for routing
 - Implement proper error handling with appropriate HTTP status codes
-- Add input validation to ensure array contains integers only
+- Add input validation to ensure array field is present
 - Return JSON responses with consistent structure
-- Handle edge cases like empty arrays and non-numeric inputs
+- Handle edge cases like empty arrays
 
 Success criteria:
 - All three endpoints respond correctly to valid requests
