@@ -1,11 +1,10 @@
-version: "3.9"
 services:
   app:
-    build: ../../
-    image: c-ds-algo-platform:latest
-    command: ["./run_tests.sh", "task-001"]
-    environment:
-      - TASK_ID=task-001
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: c-ds-algo-platform:task-001
+    command: ["./tasks/task-001/run-tests.sh"]
     volumes:
-      - ../../:/app
-      - ./task_tests.py:/app/tasks/task-001/task_tests.py
+      - ../..:/app
+    working_dir: /app
