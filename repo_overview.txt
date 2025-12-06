@@ -1,0 +1,62 @@
+C Data Structures & Algorithms Learning Platform
+
+Project Overview:
+This is a comprehensive MERN stack web application designed to teach and demonstrate C programming data structures and algorithms through an interactive learning platform. The platform provides hands-on coding experience with real-time compilation, execution, and testing of C code.
+
+Architecture:
+- Frontend: React.js with modern UI (TailwindCSS, Monaco Editor)
+- Backend: Node.js with Express.js
+- Database: MongoDB with Mongoose ODM
+- Language: C (for data structures and algorithms)
+- Testing: Jest (JavaScript) and pytest (Python)
+
+Key Features:
+1. Interactive C Code Editor with Monaco Editor
+2. Real-time C code compilation and execution
+3. Comprehensive data structures library (arrays, linked lists, trees, graphs, etc.)
+4. Algorithm implementation and testing platform
+5. User authentication and progress tracking
+6. Task-based learning system with automated testing
+7. Code validation and formatting tools
+8. Performance analysis and complexity visualization
+
+Core Components:
+- Data Structures Module: Complete implementations of common data structures in C
+- Algorithms Module: Sorting, searching, graph algorithms, dynamic programming
+- Compiler Service: Real-time C code compilation and execution
+- User Management: Authentication, progress tracking, leaderboards
+- Task System: Structured learning tasks with automated testing
+
+API Endpoints:
+- /api/health - Health check endpoint
+- /api/auth/* - Authentication and user management
+- /api/datastructures/* - Data structure CRUD operations
+- /api/algorithms/* - Algorithm CRUD operations and submission
+- /api/compiler/* - Code compilation, validation, and formatting
+- /api/users/* - User profile and progress management
+
+Testing Framework:
+- Base tests: Jest tests for core API functionality
+- Task tests: pytest-based tests for specific learning tasks
+- Automated diff application for null agent compatibility
+- Health check integration for containerized testing
+
+Docker Integration:
+- Multi-stage Docker build with Node.js and Python support
+- Automated test execution via run_tests.sh script
+- Git-based diff application for task implementation
+- Health check endpoints for container orchestration
+
+Educational Focus:
+The platform is designed to help students learn C programming through practical implementation of data structures and algorithms. Each task includes:
+- Detailed problem descriptions
+- Example implementations
+- Automated test suites
+- Performance analysis
+- Step-by-step learning progression
+
+Compatibility:
+- Oracle Agent: Full support with direct implementation
+- Null Agent: Diff-based task application
+- Containerized testing with Docker Compose
+- Automated grading workflow integration

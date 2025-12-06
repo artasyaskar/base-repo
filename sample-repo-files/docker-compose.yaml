@@ -2,7 +2,7 @@ version: "3.9"
 services:
   app:
     build: .
-    image: c-ds-algo-platform:latest
+    image: mern-training-base:latest
     command: ["./run_tests.sh", "${TASK_ID:-BASE}"]
     environment:
       - TASK_ID=${TASK_ID:-BASE}
