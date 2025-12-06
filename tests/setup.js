@@ -13,4 +13,4 @@ global.console = {
 };
 
 // Set timeout for async operations
-jest.setTimeout(10000);
+jest.setTimeout(5000);

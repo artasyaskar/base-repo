@@ -32,8 +32,10 @@ const cleanupTempFiles = () => {
   }
 };
 
-// Run cleanup every 30 minutes
-setInterval(cleanupTempFiles, 30 * 60 * 1000);
+// Run cleanup every 30 minutes (only in production)
+if (process.env.NODE_ENV === 'production') {
+  setInterval(cleanupTempFiles, 30 * 60 * 1000);
+}
 
 // Compile and run C code
 router.post('/compile', async (req, res) => {
