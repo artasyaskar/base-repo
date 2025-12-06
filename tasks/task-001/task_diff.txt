@@ -1,0 +1,82 @@
+diff --git a/server/index.js b/server/index.js
+index 7790528..1ae37cb 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -44,6 +44,7 @@ app.use('/api/datastructures', require('./routes/datastructures'));
+ app.use('/api/algorithms', require('./routes/algorithms'));
+ app.use('/api/compiler', require('./routes/compiler'));
+ app.use('/api/users', require('./routes/users'));
++app.use('/api/array', require('./routes/array'));
+
+ // Health check endpoint
+ app.get('/api/health', (req, res) => {
+diff --git a/server/routes/array.js b/server/routes/array.js
+new file mode 100644
+index 0000000..2d381fa
+--- /dev/null
++++ b/server/routes/array.js
+@@ -0,0 +1,64 @@
++const express = require('express');
++const router = express.Router();
++
++// Validate array input
++const validateArray = (req, res, next) => {
++  const { array } = req.body;
++
++  if (!array) {
++    return res.status(400).json({ error: 'Array field is required.' });
++  }
++
++  if (!Array.isArray(array)) {
++    return res.status(400).json({ error: 'Array must be an array.' });
++  }
++
++  // Check if all elements are numbers
++  for (const element of array) {
++    if (typeof element !== 'number' || isNaN(element)) {
++      return res.status(400).json({ error: 'All array elements must be numbers.' });
++    }
++  }
++
++  next();
++};
++
++// POST /api/array/sum - Calculate sum of array elements
++router.post('/sum', validateArray, (req, res) => {
++  try {
++    const { array } = req.body;
++    const sum = array.reduce((acc, num) => acc + num, 0);
++    res.json({ sum });
++  } catch (error) {
++    res.status(500).json({ error: 'Server error calculating sum.' });
++  }
++});
++
++// POST /api/array/reverse - Reverse array elements
++router.post('/reverse', validateArray, (req, res) => {
++  try {
++    const { array } = req.body;
++    const reversed = [...array].reverse();
++    res.json({ reversed });
++  } catch (error) {
++    res.status(500).json({ error: 'Server error reversing array.' });
++  }
++});
++
++// POST /api/array/max - Find maximum element in array
++router.post('/max', validateArray, (req, res) => {
++  try {
++    const { array } = req.body;
++
++    if (array.length === 0) {
++      return res.status(400).json({ error: 'Array cannot be empty for max operation.' });
++    }
++
++    const max = Math.max(...array);
++    res.json({ max });
++  } catch (error) {
++    res.status(500).json({ error: 'Server error finding max.' });
++  }
++});
++
++module.exports = router;
