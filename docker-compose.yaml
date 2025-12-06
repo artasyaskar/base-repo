@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    image: c-ds-algo-platform:latest
+    container_name: c-ds-algo-app
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/c-ds-algo
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production
+      - CLIENT_URL=http://localhost:3000
+    depends_on:
+      - mongo
+    volumes:
+      - ./server/temp:/app/server/temp
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:7
+    container_name: c-ds-algo-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+      - MONGO_INITDB_DATABASE=c-ds-algo
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: c-ds-algo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+    driver: local
+  redis-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
