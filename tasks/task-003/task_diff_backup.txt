@@ -8,7 +8,7 @@ index 7790528..7ea2526 100644
  app.use('/api/users', require('./routes/users'));
 +app.use('/api/string', require('./routes/string'));
 +app.use('/api/number', require('./routes/number'));
-
+ 
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/number.js b/server/routes/number.js
@@ -23,11 +23,11 @@ index 0000000..8f30c54
 +// POST /api/number/double - Double each number in an array
 +router.post('/double', (req, res) => {
 +  const { numbers } = req.body;
-+
++  
 +  if (numbers === undefined) {
 +    return res.status(400).json({ error: 'Numbers field is required' });
 +  }
-+
++  
 +  const doubled = Array.isArray(numbers) ? numbers.map(n => typeof n === 'number' ? n * 2 : 0) : [];
 +  res.json({ doubled });
 +});
@@ -35,11 +35,11 @@ index 0000000..8f30c54
 +// POST /api/number/square - Square each number in an array
 +router.post('/square', (req, res) => {
 +  const { numbers } = req.body;
-+
++  
 +  if (numbers === undefined) {
 +    return res.status(400).json({ error: 'Numbers field is required' });
 +  }
-+
++  
 +  const squared = Array.isArray(numbers) ? numbers.map(n => typeof n === 'number' ? n * n : 0) : [];
 +  res.json({ squared });
 +});
@@ -47,11 +47,11 @@ index 0000000..8f30c54
 +// POST /api/number/even - Check if a number is even
 +router.post('/even', (req, res) => {
 +  const { number } = req.body;
-+
++  
 +  if (number === undefined) {
 +    return res.status(400).json({ error: 'Number field is required' });
 +  }
-+
++  
 +  const even = typeof number === 'number' && number % 2 === 0;
 +  res.json({ even });
 +});
