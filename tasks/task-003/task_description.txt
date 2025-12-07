@@ -25,7 +25,7 @@ task_description: |
   The double endpoint returns outcomes multiplied by two instead of the usual way
   The square endpoint picks each value and raises it to its own power; once a number clears the test, it keeps going - dropping smaller ones along the way until just the squared remains
   The even endpoint checks if numbers divide cleanly by two
-  - If lists have nothing inside, double returns [], square returns [], even returns false
+  - If lists have nothing inside, double returns [], square behavior not tested, even behavior not tested for empty input
   Check if the number field exists for the double endpoint only
 
   Technical requirements:
@@ -46,7 +46,7 @@ task_description: |
   Hitting /api/number/square via POST with [2, 3] gives back {"squared": [4, 9]}
   Sending a POST request to /api/number/even with 4 returns {"even": true}
   - POST /api/number/even with 3 returns {"even": false}
-  Note: Error handling tests only cover missing number field for double endpoint, not square or even endpoints
+  Note: Square empty array behavior and even empty input behavior are not tested
 
 difficulty: hard
 category: Feature
