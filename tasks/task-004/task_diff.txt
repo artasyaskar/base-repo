@@ -9,7 +9,7 @@ index 7790528..f5e5edc 100644
 +app.use('/api/string', require('./routes/string'));
 +app.use('/api/number', require('./routes/number'));
 +app.use('/api/math', require('./routes/math'));
- 
+
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/math.js b/server/routes/math.js
@@ -24,11 +24,11 @@ index 0000000..c560563
 +// POST /api/math/add - Add two numbers
 +router.post('/add', (req, res) => {
 +  const { a, b } = req.body;
-+  
++
 +  if (a === undefined || b === undefined) {
 +    return res.status(400).json({ error: 'Both a and b fields are required' });
 +  }
-+  
++
 +  const result = (typeof a === 'number' && typeof b === 'number') ? a + b : 0;
 +  res.json({ result });
 +});
@@ -36,7 +36,7 @@ index 0000000..c560563
 +// POST /api/math/subtract - Subtract two numbers
 +router.post('/subtract', (req, res) => {
 +  const { a, b } = req.body;
-+  
++
 +  const result = (typeof a === 'number' && typeof b === 'number') ? a - b : 0;
 +  res.json({ result });
 +});
@@ -44,7 +44,7 @@ index 0000000..c560563
 +// POST /api/math/positive - Check if a number is positive
 +router.post('/positive', (req, res) => {
 +  const { number } = req.body;
-+  
++
 +  const positive = typeof number === 'number' && number > 0;
 +  res.json({ positive });
 +});
