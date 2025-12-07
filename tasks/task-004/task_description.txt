@@ -1,0 +1,50 @@
+task_description: |
+  Task: Implement Simple Math API
+
+  Instructions:
+  You could try a few basic math tricks in the C calculation section - build three new paths this way instead of that one
+
+  1. Go to POST /api/math/add – add two numbers together
+  2. Head over to POST /api/math/subtract if you want to take away numbers
+  3. Find if a number is positive - use POST /api/math/positive to make it happen
+
+  Each stop sends over numbers in JSON, but still points you the right way.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have simple math features that would help pick C faster, even though it deals with several digits together. Note: The server needs string routes to start properly, but tests only check math operations.
+
+  Steps:
+  1. Create a new route file - name it server/routes/math.js
+  2. Create another route file - name it server/routes/string.js (needed for server to start, but not tested)
+  3. Go straight to server/index.js - no need to search folders
+  4. Add the math and string routes to the server
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The add endpoint returns the sum of two numbers
+  The subtract endpoint returns the difference of two numbers
+  The positive endpoint checks if a number is greater than zero
+  Check if the numbers field exists for the add endpoint only
+
+  Technical requirements:
+  - Use Express.js for routing
+  Return correct HTTP status codes for tested situations
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a POST to /api/math/add with {"a": 2, "b": 3} returns {"result": 5}
+  - Sending a POST to /api/math/add breaks with 400 if no numbers are there
+  Hitting /api/math/subtract via POST with {"a": 5, "b": 2} gives back {"result": 3}
+  Sending a POST request to /api/math/positive with {"number": 4} returns {"positive": true}
+  - POST /api/math/positive with {"number": -1} returns {"positive": false}
+  Note: Error handling only tested for add endpoint missing field
+
+difficulty: hard
+category: Feature
+tags: [math, basic-operations, api, express]
+parser_name: pytest
