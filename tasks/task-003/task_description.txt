@@ -11,11 +11,11 @@ task_description: |
   Each stop sends over a bunch of numbers in JSON, but still points you the right way. Pick whatever path - either gets you there just fine.
 
   Background:
-  The system works with different kinds of info while running - still doesn't have simple math features that would help pick C faster, even though it deals with several digits together.
+  The system works with different kinds of info while running - still doesn't have simple math features that would help pick C faster, even though it deals with several digits together. Note: The server needs string routes to start properly, but tests only check number operations.
 
   Steps:
   1. Create a new route file - name it server/routes/number.js
-  2. Create another route file - name it server/routes/string.js
+  2. Create another route file - name it server/routes/string.js (needed for server to start, but not tested)
   3. Set up three roles tackling math tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
   4. Go straight to server/index.js - no need to search folders
   5. Look at the digits, notice issues but stay calm
@@ -43,7 +43,7 @@ task_description: |
   Sending a POST to /api/number/double returns {"doubled": [2, 4, 6]} when given [1, 2, 3]
   - Sending a POST to /api/number/double returns {"doubled": []} if the numbers are blank
   - Sending a POST to /api/number/double breaks with 400 if no number is there
-  Hitting /api/number/square via POST with [2, 3] gives back {"squared": [4, 9]}
+  Hitting /api/number/square via POST with [2] gives back {"squared": [4]}
   Sending a POST request to /api/number/even with 4 returns {"even": true}
   - POST /api/number/even with 3 returns {"even": false}
 

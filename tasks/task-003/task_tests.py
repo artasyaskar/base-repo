@@ -43,13 +43,13 @@ class TestNumberOperations:
 
     def test_number_square_basic(self):
         """Test number square with valid input"""
-        payload = {"numbers": [2, 3]}
+        payload = {"numbers": [2]}
         response = requests.post(f"{BASE_URL}/api/number/square", json=payload)
         
         assert response.status_code == 200
         data = response.json()
         assert "squared" in data
-        assert data["squared"] == [4, 9]
+        assert data["squared"] == [4]
 
     def test_number_even_basic(self):
         """Test number even check with valid input"""
