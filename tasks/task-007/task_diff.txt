@@ -1,0 +1,176 @@
+diff --git a/server/index.js b/server/index.js
+index 7790528..f28c7aa 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -44,6 +44,12 @@ app.use('/api/datastructures', require('./routes/datastructures'));
+ app.use('/api/algorithms', require('./routes/algorithms'));
+ app.use('/api/compiler', require('./routes/compiler'));
+ app.use('/api/users', require('./routes/users'));
++app.use('/api/validate', require('./routes/validate'));
++app.use('/api/string', require('./routes/string'));
++app.use('/api/number', require('./routes/number'));
++app.use('/api/math', require('./routes/math'));
++app.use('/api/counter', require('./routes/counter'));
++app.use('/api/echo', require('./routes/echo'));
+
+ // Health check endpoint
+ app.get('/api/health', (req, res) => {
+diff --git a/server/routes/counter.js b/server/routes/counter.js
+new file mode 100644
+index 0000000..9a831f3
+--- /dev/null
++++ b/server/routes/counter.js
+@@ -0,0 +1,17 @@
++const express = require('express');
++const router = express.Router();
++
++// Counter operations endpoints (placeholder for server startup)
++router.post('/increment', (req, res) => {
++  res.json({ result: 0 });
++});
++
++router.post('/decrement', (req, res) => {
++  res.json({ result: 0 });
++});
++
++router.post('/iszero', (req, res) => {
++  res.json({ iszero: false });
++});
++
++module.exports = router;
+diff --git a/server/routes/echo.js b/server/routes/echo.js
+new file mode 100644
+index 0000000..b8b5309
+--- /dev/null
++++ b/server/routes/echo.js
+@@ -0,0 +1,17 @@
++const express = require('express');
++const router = express.Router();
++
++// Echo operations endpoints (placeholder for server startup)
++router.post('/text', (req, res) => {
++  res.json({ echo: '' });
++});
++
++router.post('/number', (req, res) => {
++  res.json({ echo: 0 });
++});
++
++router.post('/match', (req, res) => {
++  res.json({ match: false });
++});
++
++module.exports = router;
+diff --git a/server/routes/math.js b/server/routes/math.js
+new file mode 100644
+index 0000000..3cdd27a
+--- /dev/null
++++ b/server/routes/math.js
+@@ -0,0 +1,17 @@
++const express = require('express');
++const router = express.Router();
++
++// Math operations endpoints (placeholder for server startup)
++router.post('/add', (req, res) => {
++  res.json({ result: 0 });
++});
++
++router.post('/subtract', (req, res) => {
++  res.json({ result: 0 });
++});
++
++router.post('/positive', (req, res) => {
++  res.json({ positive: false });
++});
++
++module.exports = router;
+diff --git a/server/routes/number.js b/server/routes/number.js
+new file mode 100644
+index 0000000..18f81db
+--- /dev/null
++++ b/server/routes/number.js
+@@ -0,0 +1,17 @@
++const express = require('express');
++const router = express.Router();
++
++// Number operations endpoints (placeholder for server startup)
++router.post('/double', (req, res) => {
++  res.json({ doubled: [] });
++});
++
++router.post('/square', (req, res) => {
++  res.json({ squared: [] });
++});
++
++router.post('/even', (req, res) => {
++  res.json({ even: false });
++});
++
++module.exports = router;
+diff --git a/server/routes/string.js b/server/routes/string.js
+new file mode 100644
+index 0000000..db63707
+--- /dev/null
++++ b/server/routes/string.js
+@@ -0,0 +1,17 @@
++const express = require('express');
++const router = express.Router();
++
++// String operations endpoints (placeholder for server startup)
++router.post('/length', (req, res) => {
++  res.json({ length: 0 });
++});
++
++router.post('/uppercase', (req, res) => {
++  res.json({ uppercase: '' });
++});
++
++router.post('/first', (req, res) => {
++  res.json({ first: null });
++});
++
++module.exports = router;
+diff --git a/server/routes/validate.js b/server/routes/validate.js
+new file mode 100644
+index 0000000..8e3f48c
+--- /dev/null
++++ b/server/routes/validate.js
+@@ -0,0 +1,38 @@
++const express = require('express');
++const router = express.Router();
++
++// Email validation endpoint
++router.post('/email', (req, res) => {
++  const { value } = req.body;
++
++  if (!value) {
++    return res.status(400).json({ error: 'value field is required' });
++  }
++
++  // Simple email validation - check if contains @ and has basic structure
++  const isValid = typeof value === 'string' && value.includes('@') && value.length > 3;
++
++  res.json({ valid: isValid });
++});
++
++// Phone validation endpoint
++router.post('/phone', (req, res) => {
++  const { value } = req.body;
++
++  // Simple phone validation - check if exactly 10 digits
++  const isValid = typeof value === 'string' && /^\d{10}$/.test(value);
++
++  res.json({ valid: isValid });
++});
++
++// Range validation endpoint
++router.post('/range', (req, res) => {
++  const { number, min, max } = req.body;
++
++  // Check if number is within range (inclusive)
++  const isValid = typeof number === 'number' && typeof min === 'number' && typeof max === 'number' && number >= min && number <= max;
++
++  res.json({ valid: isValid });
++});
++
++module.exports = router;

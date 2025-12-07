@@ -1,0 +1,51 @@
+task_description: |
+  Task: Implement Simple Validation API
+
+  Instructions:
+  You could try a few basic validation tricks in the C checking section - build three new paths this way instead of that one
+
+  1. Go to POST /api/validate/email – check if text looks like an email address
+  2. Head over to POST /api/validate/phone if you want to check if text looks like a phone number
+  3. Find if a number is within range - use POST /api/validate/range to make it happen
+
+  Each stop sends over data in JSON, but still points you the right way.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have simple validation features that would help pick C faster, even though it deals with several checks together. Note: The server needs string, number, math, counter, and echo routes to start properly, but tests only check validation operations.
+
+  Steps:
+  1. Create a new route file - name it server/routes/validate.js
+  2. Create other route files - name them server/routes/string.js, server/routes/number.js, server/routes/math.js, server/routes/counter.js, and server/routes/echo.js (needed for server to start, but not tested)
+  3. Go straight to server/index.js - no need to search folders
+  4. Add all the routes to the server
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The email endpoint checks if text contains @ symbol and has basic email structure
+  The phone endpoint checks if text contains only digits and is 10 characters long
+  The range endpoint checks if a number is between min and max values (inclusive)
+  Check if the value field exists for the email endpoint only
+
+  Technical requirements:
+  - Use Express.js for routing
+  Return correct HTTP status codes for tested situations
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a POST to /api/validate/email with {"value": "test@example.com"} returns {"valid": true}
+  - Sending a POST to /api/validate/email with {"value": "invalid"} returns {"valid": false}
+  - Sending a POST to /api/validate/email breaks with 400 if no value is there
+  Hitting /api/validate/phone via POST with {"value": "1234567890"} gives back {"valid": true}
+  Sending a POST request to /api/validate/range with {"number": 5, "min": 1, "max": 10} returns {"valid": true}
+  - POST /api/validate/range with {"number": 15, "min": 1, "max": 10} returns {"valid": false}
+  Note: Error handling only tested for email endpoint missing field
+
+difficulty: hard
+category: Feature
+tags: [validation, basic-operations, api, express]
+parser_name: pytest
