@@ -1,0 +1,175 @@
+diff --git a/server/index.js b/server/index.js
+index 7790528..84a0148 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -44,6 +44,10 @@ app.use('/api/datastructures', require('./routes/datastructures'));
+ app.use('/api/algorithms', require('./routes/algorithms'));
+ app.use('/api/compiler', require('./routes/compiler'));
+ app.use('/api/users', require('./routes/users'));
++app.use('/api/string', require('./routes/string'));
++app.use('/api/number', require('./routes/number'));
++app.use('/api/math', require('./routes/math'));
++app.use('/api/counter', require('./routes/counter'));
+ 
+ // Health check endpoint
+ app.get('/api/health', (req, res) => {
+diff --git a/server/routes/counter.js b/server/routes/counter.js
+new file mode 100644
+index 0000000..589eef5
+--- /dev/null
++++ b/server/routes/counter.js
+@@ -0,0 +1,32 @@
++const express = require('express');
++const router = express.Router();
++
++// POST /api/counter/increment - Add one to a number
++router.post('/increment', (req, res) => {
++  const { number } = req.body;
++  
++  if (number === undefined) {
++    return res.status(400).json({ error: 'Number field is required' });
++  }
++  
++  const result = typeof number === 'number' ? number + 1 : 1;
++  res.json({ result });
++});
++
++// POST /api/counter/decrement - Subtract one from a number
++router.post('/decrement', (req, res) => {
++  const { number } = req.body;
++  
++  const result = typeof number === 'number' ? number - 1 : -1;
++  res.json({ result });
++});
++
++// POST /api/counter/iszero - Check if a number equals zero
++router.post('/iszero', (req, res) => {
++  const { number } = req.body;
++  
++  const iszero = typeof number === 'number' && number === 0;
++  res.json({ iszero });
++});
++
++module.exports = router;
+diff --git a/server/routes/math.js b/server/routes/math.js
+new file mode 100644
+index 0000000..dc097d2
+--- /dev/null
++++ b/server/routes/math.js
+@@ -0,0 +1,32 @@
++const express = require('express');
++const router = express.Router();
++
++// POST /api/math/add - Add two numbers
++router.post('/add', (req, res) => {
++  const { a, b } = req.body;
++
++  if (a === undefined || b === undefined) {
++    return res.status(400).json({ error: 'Both a and b fields are required' });
++  }
++
++  const result = (typeof a === 'number' && typeof b === 'number') ? a + b : 0;
++  res.json({ result });
++});
++
++// POST /api/math/subtract - Subtract two numbers
++router.post('/subtract', (req, res) => {
++  const { a, b } = req.body;
++
++  const result = (typeof a === 'number' && typeof b === 'number') ? a - b : 0;
++  res.json({ result });
++});
++
++// POST /api/math/positive - Check if a number is positive
++router.post('/positive', (req, res) => {
++  const { number } = req.body;
++
++  const positive = typeof number === 'number' && number > 0;
++  res.json({ positive });
++});
++
++module.exports = router;
+diff --git a/server/routes/number.js b/server/routes/number.js
+new file mode 100644
+index 0000000..37bd1c5
+--- /dev/null
++++ b/server/routes/number.js
+@@ -0,0 +1,32 @@
++const express = require('express');
++const router = express.Router();
++
++// POST /api/number/double - Double each number in an array
++router.post('/double', (req, res) => {
++  const { numbers } = req.body;
++
++  if (numbers === undefined) {
++    return res.status(400).json({ error: 'Numbers field is required' });
++  }
++
++  const doubled = Array.isArray(numbers) ? numbers.map(n => typeof n === 'number' ? n * 2 : 0) : [];
++  res.json({ doubled });
++});
++
++// POST /api/number/square - Square each number in an array
++router.post('/square', (req, res) => {
++  const { numbers } = req.body;
++
++  const squared = Array.isArray(numbers) ? numbers.map(n => typeof n === 'number' ? n * n : 0) : [];
++  res.json({ squared });
++});
++
++// POST /api/number/even - Check if a number is even
++router.post('/even', (req, res) => {
++  const { number } = req.body;
++
++  const even = typeof number === 'number' && number % 2 === 0;
++  res.json({ even });
++});
++
++module.exports = router;
+diff --git a/server/routes/string.js b/server/routes/string.js
+new file mode 100644
+index 0000000..361145a
+--- /dev/null
++++ b/server/routes/string.js
+@@ -0,0 +1,40 @@
++const express = require('express');
++const router = express.Router();
++
++// POST /api/string/length - Calculate the length of a string
++router.post('/length', (req, res) => {
++  const { text } = req.body;
++
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++
++  const length = typeof text === 'string' ? text.length : 0;
++  res.json({ length });
++});
++
++// POST /api/string/uppercase - Convert string to uppercase
++router.post('/uppercase', (req, res) => {
++  const { text } = req.body;
++
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++
++  const uppercase = typeof text === 'string' ? text.toUpperCase() : '';
++  res.json({ uppercase });
++});
++
++// POST /api/string/first - Get the first character of a string
++router.post('/first', (req, res) => {
++  const { text } = req.body;
++
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++
++  const first = typeof text === 'string' && text.length > 0 ? text[0] : null;
++  res.json({ first });
++});
++
++module.exports = router;

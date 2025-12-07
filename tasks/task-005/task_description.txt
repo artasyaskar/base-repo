@@ -1,0 +1,50 @@
+task_description: |
+  Task: Implement Simple Counter API
+
+  Instructions:
+  You could try a few basic counter tricks in the C counting section - build three new paths this way instead of that one
+
+  1. Go to POST /api/counter/increment – add one to a number
+  2. Head over to POST /api/counter/decrement if you want to take one away
+  3. Find if a number equals zero - use POST /api/counter/iszero to make it happen
+
+  Each stop sends over numbers in JSON, but still points you the right way.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have simple counter features that would help pick C faster, even though it deals with several digits together. Note: The server needs string routes to start properly, but tests only check counter operations.
+
+  Steps:
+  1. Create a new route file - name it server/routes/counter.js
+  2. Create another route file - name it server/routes/string.js (needed for server to start, but not tested)
+  3. Go straight to server/index.js - no need to search folders
+  4. Add the counter and string routes to the server
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The increment endpoint adds one to a number
+  The decrement endpoint subtracts one from a number
+  The iszero endpoint checks if a number equals zero
+  Check if the number field exists for the increment endpoint only
+
+  Technical requirements:
+  - Use Express.js for routing
+  Return correct HTTP status codes for tested situations
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a POST to /api/counter/increment with {"number": 5} returns {"result": 6}
+  - Sending a POST to /api/counter/increment breaks with 400 if no number is there
+  Hitting /api/counter/decrement via POST with {"number": 3} gives back {"result": 2}
+  Sending a POST request to /api/counter/iszero with {"number": 0} returns {"iszero": true}
+  - POST /api/counter/iszero with {"number": 1} returns {"iszero": false}
+  Note: Error handling only tested for increment endpoint missing field
+
+difficulty: hard
+category: Feature
+tags: [counter, basic-operations, api, express]
+parser_name: pytest
