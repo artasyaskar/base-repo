@@ -24,8 +24,8 @@ task_description: |
   The entire gadget pulls each digit, then sends out an answer
   The reverse endpoint returns outcomes in backward sequence instead of the usual way
   The max endpoint picks the biggest number by scanning each entry one after another; once a value clears the test, it keeps going - dropping lower ones along the way until just the highest remains
-  - If lists have nothing inside, sum gives back 0, but reverse returns [], while max returns 400
-  See whether the array field exists
+  - If lists have nothing inside, sum gives back 0, but reverse returns []
+  Check if the array field exists for the sum endpoint
 
   Technical requirements:
   - Use Express.js for routing
