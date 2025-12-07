@@ -24,7 +24,8 @@ index 0000000..3f07337
 +  const { text } = req.body;
 +
 +  if (text === undefined) {
-+    return res.status(400).json({ error: 'Text field is required' });
++    retu
+ res.status(400).json({ error: 'Text field is required' });
 +  }
 +
 +  const length = typeof text === 'string' ? text.length : 0;
@@ -36,7 +37,8 @@ index 0000000..3f07337
 +  const { text } = req.body;
 +
 +  if (text === undefined) {
-+    return res.status(400).json({ error: 'Text field is required' });
++    retu
+ res.status(400).json({ error: 'Text field is required' });
 +  }
 +
 +  const uppercase = typeof text === 'string' ? text.toUpperCase() : '';
@@ -48,7 +50,8 @@ index 0000000..3f07337
 +  const { text } = req.body;
 +
 +  if (text === undefined) {
-+    return res.status(400).json({ error: 'Text field is required' });
++    retu
+ res.status(400).json({ error: 'Text field is required' });
 +  }
 +
 +  const first = typeof text === 'string' && text.length > 0 ? text[0] : null;
