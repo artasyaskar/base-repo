@@ -4,11 +4,11 @@ task_description: |
   Instructions:
   You could try a few basic number tricks in the C math section - build three new paths this way instead of that one
 
-  1. Go to POST /api/number/double – multiply each digit by two, work with whatever's there
-  2. Head over to POST /api/number/square if you want to boost the numbers - raising each value to its own power. Use this route whenever you're looking for bigger results, no fuss, just works
+  1. Go to POST /api/number/double – multiply each digit by two
+  2. Head over to POST /api/number/square if you want to boost the numbers - raising each value to its own power
   3. Find if a number is even or odd - use POST /api/number/even to make it happen
 
-  Each stop sends over a bunch of numbers in JSON, but still points you the right way. Pick whatever path - either gets you there just fine.
+  Each stop sends over a bunch of numbers in JSON, but still points you the right way.
 
   Background:
   The system works with different kinds of info while running - still doesn't have simple math features that would help pick C faster, even though it deals with several digits together. Note: The server needs string routes to start properly, but tests only check number operations.
@@ -16,13 +16,11 @@ task_description: |
   Steps:
   1. Create a new route file - name it server/routes/number.js
   2. Create another route file - name it server/routes/string.js (needed for server to start, but not tested)
-  3. Set up three roles tackling math tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
-  4. Go straight to server/index.js - no need to search folders
-  5. Look at the digits, notice issues but stay calm
-  6. Start at each spot, testing various ways in
+  3. Go straight to server/index.js - no need to search folders
+  4. Add the number and string routes to the server
+  5. Start at each spot, testing various ways in
 
   Expected functionality:
-  The entire gadget pulls each number, then sends out an answer
   The double endpoint returns outcomes multiplied by two instead of the usual way
   The square endpoint picks each value and raises it to its own power
   The even endpoint checks if numbers divide cleanly by two
