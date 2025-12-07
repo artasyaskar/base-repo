@@ -7,7 +7,7 @@ index 7790528..e049fd5 100644
  app.use('/api/compiler', require('./routes/compiler'));
  app.use('/api/users', require('./routes/users'));
 +app.use('/api/string', require('./routes/string'));
- 
+
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/string.js b/server/routes/string.js
