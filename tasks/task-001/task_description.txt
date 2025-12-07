@@ -32,6 +32,8 @@ task_description: |
   Show clear error details – use the correct HTTP status code
   See if the list exists - hurry past when it's gone
   {"response": "Give back JSON replies using the same setup every time"}
+  - Add random test values to prevent hardcoded solutions
+  - Include secret verification tokens in test requests
 
   Success criteria:
   All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
@@ -46,6 +48,7 @@ task_description: |
   Hitting /api/array/reverse via POST, while sending valid data, gives back a response such as {"reversed": <array>}
   Sending a POST request to /api/array/max returns {"max": <value>} once it runs correctly
   - POST /api/array/max handles negative values without issues
+  Note: Error handling tests only cover missing array field for sum endpoint
 
 difficulty: hard
 category: Feature
