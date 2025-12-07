@@ -25,12 +25,11 @@ task_description: |
   The uppercase endpoint returns outcomes in big letters instead of the usual way
   The first endpoint picks the starting letter by scanning each word one after another; once a letter clears the test, it keeps going - dropping others along the way until just the beginning remains
   - If messages have nothing inside, length gives back 0, but first returns null
-  Check if the text field exists for the length endpoint
+  Check if the text field exists for the length endpoint only
 
   Technical requirements:
   - Use Express.js for routing
-  Show clear error details – use the correct HTTP status code
-  See if the message exists - hurry past when it's gone
+  Return correct HTTP status codes for different situations
   {"response": "Give back JSON replies using the same setup every time"}
 
   Success criteria:
@@ -46,7 +45,7 @@ task_description: |
   Hitting /api/string/uppercase via POST with "cat" gives back {"uppercase": "CAT"}
   Sending a POST request to /api/string/first with "dog" returns {"first": "d"}
   - POST /api/string/first with "" returns {"first": null}
-  Note: Error handling tests only cover missing text field for length endpoint
+  Note: Error handling tests only cover missing text field for length endpoint, not uppercase or first endpoints
 
 difficulty: hard
 category: Feature
