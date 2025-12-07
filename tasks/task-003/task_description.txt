@@ -31,7 +31,7 @@ task_description: |
 
   Technical requirements:
   - Use Express.js for routing
-  Return correct HTTP status codes for different situations
+  Return correct HTTP status codes for tested situations
   {"response": "Give back JSON replies using the same setup every time"}
 
   Success criteria:
@@ -46,6 +46,7 @@ task_description: |
   Hitting /api/number/square via POST with [2] gives back {"squared": [4]}
   Sending a POST request to /api/number/even with 4 returns {"even": true}
   - POST /api/number/even with 3 returns {"even": false}
+  Note: Error handling only tested for double endpoint missing field
 
 difficulty: hard
 category: Feature
