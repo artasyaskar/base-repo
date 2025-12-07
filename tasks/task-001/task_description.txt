@@ -32,8 +32,6 @@ task_description: |
   Show clear error details – use the correct HTTP status code
   See if the list exists - hurry past when it's gone
   {"response": "Give back JSON replies using the same setup every time"}
-  - Add random test values to prevent hardcoded solutions
-  - Include secret verification tokens in test requests
 
   Success criteria:
   All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
