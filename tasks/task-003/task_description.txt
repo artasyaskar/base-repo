@@ -15,10 +15,11 @@ task_description: |
 
   Steps:
   1. Create a new route file - name it server/routes/number.js
-  2. Set up three roles tackling math tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
-  3. Go straight to server/index.js - no need to search folders
-  4. Look at the digits, notice issues but stay calm
-  5. Start at each spot, testing various ways in
+  2. Create another route file - name it server/routes/string.js
+  3. Set up three roles tackling math tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
+  4. Go straight to server/index.js - no need to search folders
+  5. Look at the digits, notice issues but stay calm
+  6. Start at each spot, testing various ways in
 
   Expected functionality:
   The entire gadget pulls each number, then sends out an answer
