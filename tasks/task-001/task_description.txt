@@ -2,56 +2,56 @@ task_description: |
   Task: Implement Basic Array Operations API
 
   Instructions:
-  You need to add basic array operations to the C Data Structures & Algorithms section by introducing three new endpoints:
+  You'll probably need a few basic array tasks in the C data structures and algorithms section - just set up three new endpoints like this
 
-  1. POST /api/array/sum – Add up all integers in a list
-  2. POST /api/array/reverse – Reverse the order of items in a list
-  3. GET /api/array/high – Return the highest value from a list
+  1. POST /api/array/sum – Add up each value found in a list
+  2. POST /api/array/reverse – Use this route to reverse item order in a list
+  3. Find highest number in a list using GET /api/array/max
 
-  Each endpoint accepts a JSON payload with an "array" field containing integers and returns the correct result. The response format stays consistent across all calls.
+  Each endpoint receives a JSON bundle filled with digits, but still returns the correct result. Pick any - your outcome stays the same.
 
   Background:
-  The current system supports different data types and workflows but is missing essential beginner-friendly array functions needed for C programming fundamentals.
+  The system works with different types of data while running, but it doesn't include simple array features that help when picking up C.
 
   Steps:
-  1. Create a new route file: server/routes/array.js
-  2. Implement three endpoints that handle array operations
-  3. Register the route inside server/index.js without unnecessary layers
-  4. Validate inputs carefully and fix issues quietly
-  5. Test all endpoints with varied inputs
+  1. Create a new route file - name it server/routes/array.js
+  2. Create three endpoints which manage tasks involving arrays
+  3. Go to server/index.js instead of diving into subfolders
+  4. Look at what's written, find issues quietly
+  5. Test each endpoint with various inputs
 
   Expected functionality:
-  - The sum endpoint processes each number and returns the total
-  - The reverse endpoint returns the list in reverse order
-  - The high endpoint finds the largest number in the list
-  - Empty arrays: sum returns 0, reverse returns [], high returns 400
-  - Validate that the array field exists
+  The sum endpoint takes all numbers, after that returns the outcome
+  The reverse endpoint returns the elements in backward order instead of the usual way
+  The max endpoint picks the biggest number from the list by going through each item - one after another - using checks that run step by step until the largest pops out
+  - If lists have nothing inside, sum gives back 0, but reverse returns [] while max still shows 400
+  See whether the array field exists
 
   Technical requirements:
   - Use Express.js for routing
-  - Provide clear error messages with proper HTTP status codes
-  - Ensure the array field exists before processing
-  - Return JSON responses in a consistent structure
-  - Handle empty or unusual arrays correctly
+  Show clear error messages – pick the right HTTP status code
+  See if the list exists – move on if it isn't around
+  {"response": "Give back JSON replies using the same setup every time"}
+  - Handle empty or strange lists without issues
 
   Success criteria:
-  - All three endpoints return correct results with valid input
-  - Proper error handling for invalid input
+  All three places nail it when given solid info - yet each ticks differently inside; one moves piece by piece, another hops randomly through tasks, whereas the last verifies while moving forward - but every time, they land on target, no misses
+  - Deal with mistakes coolly if info’s off
   - Consistent JSON formatting
-  - Works smoothly with the existing server setup
+  Fits neatly into what you already use - no stress, no fuss
 
   Critical tested requirements:
-  - POST /api/array/sum returns {"sum": <value>} for valid input
-  - POST /api/array/sum returns {"sum": 0} for empty arrays
-  - POST /api/array/sum returns 400 if array is missing
-  - POST /api/array/reverse returns {"reversed": <array>} for valid input
-  - POST /api/array/reverse returns {"reversed": []} when called with empty body
-  - POST /api/array/reverse returns 400 if array is missing
-  - POST /api/array/max returns {"max": <value>} for valid input
-  - POST /api/array/max handles negative numbers correctly
-  - POST /api/array/max returns 400 when array is empty or missing
+  - Hitting /api/array/sum with a POST returns {"sum": } if the input’s right
+  - Sending a POST request to /api/array/sum returns {"sum": 0} if the arrays are blank
+  - Sending a POST request to /api/array/sum returns error 400 if no array is included
+  - Sending proper data to POST /api/array/reverse returns {"reversed": } as response
+  - Hitting /api/array/reverse with a POST and no body returns {"reversed": []}
+  - Hitting POST /api/array/reverse without an array triggers a 400 error
+  Sending a POST request to /api/array/max returns {"max": } if the info’s right
+  - POST /api/array/max handles negative numbers without issues
+  - Send a POST to /api/array/max → gets 400 when list’s missing or empty
 
 difficulty: hard
 category: Feature
-labels: [items, main tasks, user screen, quick system]
+tags: [items, main tasks, user screen, quick system]
 parser_name: pytest
