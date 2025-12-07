@@ -11,13 +11,13 @@ task_description: |
   Each stop sends over data in JSON, but still points you the right way.
 
   Background:
-  The system works with different kinds of info while running - still doesn't have simple echo features that would help pick C faster, even though it deals with several digits together. Note: The server needs string routes to start properly, but tests only check echo operations.
+  The system works with different kinds of info while running - still doesn't have simple echo features that would help pick C faster, even though it deals with several digits together. Note: The server needs string, number, math, and counter routes to start properly, but tests only check echo operations.
 
   Steps:
   1. Create a new route file - name it server/routes/echo.js
-  2. Create another route file - name it server/routes/string.js (needed for server to start, but not tested)
+  2. Create other route files - name them server/routes/string.js, server/routes/number.js, server/routes/math.js, and server/routes/counter.js (needed for server to start, but not tested)
   3. Go straight to server/index.js - no need to search folders
-  4. Add the echo and string routes to the server
+  4. Add all the routes to the server
   5. Start at each spot, testing various ways in
 
   Expected functionality:
