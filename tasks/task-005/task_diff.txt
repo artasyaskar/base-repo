@@ -10,7 +10,7 @@ index 7790528..84a0148 100644
 +app.use('/api/number', require('./routes/number'));
 +app.use('/api/math', require('./routes/math'));
 +app.use('/api/counter', require('./routes/counter'));
- 
+
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/counter.js b/server/routes/counter.js
@@ -25,11 +25,11 @@ index 0000000..589eef5
 +// POST /api/counter/increment - Add one to a number
 +router.post('/increment', (req, res) => {
 +  const { number } = req.body;
-+  
++
 +  if (number === undefined) {
 +    return res.status(400).json({ error: 'Number field is required' });
 +  }
-+  
++
 +  const result = typeof number === 'number' ? number + 1 : 1;
 +  res.json({ result });
 +});
@@ -37,7 +37,7 @@ index 0000000..589eef5
 +// POST /api/counter/decrement - Subtract one from a number
 +router.post('/decrement', (req, res) => {
 +  const { number } = req.body;
-+  
++
 +  const result = typeof number === 'number' ? number - 1 : -1;
 +  res.json({ result });
 +});
@@ -45,7 +45,7 @@ index 0000000..589eef5
 +// POST /api/counter/iszero - Check if a number equals zero
 +router.post('/iszero', (req, res) => {
 +  const { number } = req.body;
-+  
++
 +  const iszero = typeof number === 'number' && number === 0;
 +  res.json({ iszero });
 +});
