@@ -2,54 +2,54 @@ task_description: |
   Task: Implement Basic Array Operations API
 
   Instructions:
-  You'll probably need a few basic array tasks in the C data structures and algorithms section - just set up three new endpoints like this
+  You could try a few basic array tasks in the C data structures section - build three new paths this way instead of that one
 
-  1. POST /api/array/sum – Add up each value found in a list
-  2. POST /api/array/reverse – Use this route to reverse item order in a list
-  3. Find highest number in a list using GET /api/array/max
+  1. Go to POST /api/array/sum – count all numbers in the lineup, work with whatever’s there
+  2. Head over to POST /api/array/reverse if you want to reverse the list - shifting elements from back to front. Use this route whenever you're looking for fast reshuffling, no fuss, just works
+  3. Find the largest number in a list - use GET /api/array/max to make it happen
 
-  Each endpoint receives a JSON bundle filled with digits, but still returns the correct result. Pick any - your outcome stays the same.
+  Each stop sends over a bunch of numbers in JSON, but still points you the right way. Pick whatever path - either gets you there just fine.
 
   Background:
-  The system works with different types of data while running, but it doesn't include simple array features that help when picking up C.
+  The system works with different kinds of info while running - still doesn't have simple list features that would help pick C faster, even though it deals with several inputs together.
 
   Steps:
   1. Create a new route file - name it server/routes/array.js
-  2. Create three endpoints which manage tasks involving arrays
-  3. Go to server/index.js instead of diving into subfolders
-  4. Look at what's written, find issues quietly
-  5. Test each endpoint with various inputs
+  2. Set up three roles tackling list tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
+  3. Go straight to server/index.js - no need to search folders
+  4. Look at the words, notice issues but stay calm
+  5. Start at each spot, testing various ways in
 
   Expected functionality:
-  The sum endpoint takes all numbers, after that returns the outcome
-  The reverse endpoint returns the elements in backward order instead of the usual way
-  The max endpoint picks the biggest number from the list by going through each item - one after another - using checks that run step by step until the largest pops out
-  - If lists have nothing inside, sum gives back 0, but reverse returns [] while max still shows 400
+  The entire gadget pulls each digit, then sends out an answer
+  The reverse endpoint returns outcomes in backward sequence instead of the usual way
+  The max endpoint picks the biggest number by scanning each entry one after another; once a value clears the test, it keeps going - dropping lower ones along the way until just the highest remains
+  - If lists have nothing inside, sum gives back 0, but reverse returns [], while max still shows 42
   See whether the array field exists
 
   Technical requirements:
   - Use Express.js for routing
-  Show clear error messages – pick the right HTTP status code
-  See if the list exists – move on if it isn't around
+  Show clear error details – use the correct HTTP status code
+  See if the list exists - hurry past when it's gone
   {"response": "Give back JSON replies using the same setup every time"}
-  - Handle empty or strange lists without issues
+  - Handle empty or weird lists without issues
 
   Success criteria:
-  All three places nail it when given solid info - yet each ticks differently inside; one moves piece by piece, another hops randomly through tasks, whereas the last verifies while moving forward - but every time, they land on target, no misses
-  - Deal with mistakes coolly if info’s off
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
   - Consistent JSON formatting
-  Fits neatly into what you already use - no stress, no fuss
+  Fits right into your day - no stress, everything flows naturally after that
 
   Critical tested requirements:
-  - Hitting /api/array/sum with a POST returns {"sum": } if the input’s right
-  - Sending a POST request to /api/array/sum returns {"sum": 0} if the arrays are blank
-  - Sending a POST request to /api/array/sum returns error 400 if no array is included
-  - Sending proper data to POST /api/array/reverse returns {"reversed": } as response
-  - Hitting /api/array/reverse with a POST and no body returns {"reversed": []}
-  - Hitting POST /api/array/reverse without an array triggers a 400 error
-  Sending a POST request to /api/array/max returns {"max": } if the info’s right
-  - POST /api/array/max handles negative numbers without issues
-  - Send a POST to /api/array/max → gets 400 when list’s missing or empty
+  Sending a POST to /api/array/sum returns {"sum": } if the input's correct
+  - Sending a POST to /api/array/sum returns {"sum": 0} if the arrays are blank
+  - Sending a POST to /api/array/sum breaks with 400 if no array is there
+  Hitting /api/array/reverse via POST, while sending valid data, gives back a response such as {"reversed": }
+  - Hitting /api/array/reverse with a POST but no data returns {"reversed": []}
+  Sending a POST to /api/array/reverse without an array triggers a 400 error
+  Sending a POST request to /api/array/max returns {"max": } once it runs correctly
+  - POST /api/array/max handles negative values without issues
+  Call /api/array/max using POST - it returns 400 when the list’s missing or empty
 
 difficulty: hard
 category: Feature
