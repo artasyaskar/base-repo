@@ -24,7 +24,7 @@ task_description: |
   The entire gadget pulls each digit, then sends out an answer
   The reverse endpoint returns outcomes in backward sequence instead of the usual way
   The max endpoint picks the biggest number by scanning each entry one after another; once a value clears the test, it keeps going - dropping lower ones along the way until just the highest remains
-  - If lists have nothing inside, sum gives back 0, but reverse returns [], while max still shows 42
+  - If lists have nothing inside, sum gives back 0, but reverse returns [], while max returns 400
   See whether the array field exists
 
   Technical requirements:
@@ -45,11 +45,8 @@ task_description: |
   - Sending a POST to /api/array/sum returns {"sum": 0} if the arrays are blank
   - Sending a POST to /api/array/sum breaks with 400 if no array is there
   Hitting /api/array/reverse via POST, while sending valid data, gives back a response such as {"reversed": <array>}
-  - Hitting /api/array/reverse with a POST but empty data returns {"reversed": []}
-  Sending a POST to /api/array/reverse without an array triggers a 400 error
   Sending a POST request to /api/array/max returns {"max": <value>} once it runs correctly
   - POST /api/array/max handles negative values without issues
-  Call /api/array/max using POST - it returns 400 when the list's missing or empty
 
 difficulty: hard
 category: Feature
