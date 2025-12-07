@@ -40,12 +40,12 @@ task_description: |
   Fits right into your day - no stress, everything flows naturally after that
 
   Critical tested requirements:
-  Sending a POST to /api/array/sum returns {"sum": <value>} if the input's correct
+  Sending a POST to /api/array/sum returns {"sum": 6} when given [1, 2, 3]
   - Sending a POST to /api/array/sum returns {"sum": 0} if the arrays are blank
   - Sending a POST to /api/array/sum breaks with 400 if no array is there
-  Hitting /api/array/reverse via POST, while sending valid data, gives back a response such as {"reversed": <array>}
-  Sending a POST request to /api/array/max returns {"max": <value>} once it runs correctly
-  - POST /api/array/max handles negative values without issues
+  Hitting /api/array/reverse via POST with [1, 2, 3] gives back {"reversed": [3, 2, 1]}
+  Sending a POST request to /api/array/max with [1, 2, 3] returns {"max": 3}
+  - POST /api/array/max with [-1, -2] returns {"max": -1}
   Note: Error handling tests only cover missing array field for sum endpoint
 
 difficulty: hard

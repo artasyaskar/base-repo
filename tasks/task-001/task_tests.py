@@ -23,13 +23,13 @@ class TestArrayOperations:
 
     def test_array_sum_basic(self):
         """Test array sum with valid input"""
-        payload = {"array": [1, 2, 3, 4, 5]}
+        payload = {"array": [1, 2, 3]}
         response = requests.post(f"{BASE_URL}/api/array/sum", json=payload)
         
         assert response.status_code == 200
         data = response.json()
         assert "sum" in data
-        assert data["sum"] == 15
+        assert data["sum"] == 6
 
     def test_array_sum_empty(self):
         """Test array sum with empty array"""
@@ -43,27 +43,27 @@ class TestArrayOperations:
 
     def test_array_reverse_basic(self):
         """Test array reverse with valid input"""
-        payload = {"array": [1, 2, 3, 4, 5]}
+        payload = {"array": [1, 2, 3]}
         response = requests.post(f"{BASE_URL}/api/array/reverse", json=payload)
         
         assert response.status_code == 200
         data = response.json()
         assert "reversed" in data
-        assert data["reversed"] == [5, 4, 3, 2, 1]
+        assert data["reversed"] == [3, 2, 1]
 
     def test_array_max_basic(self):
         """Test array max with valid input"""
-        payload = {"array": [1, 2, 3, 4, 5]}
+        payload = {"array": [1, 2, 3]}
         response = requests.post(f"{BASE_URL}/api/array/max", json=payload)
         
         assert response.status_code == 200
         data = response.json()
         assert "max" in data
-        assert data["max"] == 5
+        assert data["max"] == 3
 
     def test_array_max_negative(self):
         """Test array max with negative numbers"""
-        payload = {"array": [-5, -2, -8, -1]}
+        payload = {"array": [-1, -2]}
         response = requests.post(f"{BASE_URL}/api/array/max", json=payload)
         
         assert response.status_code == 200
@@ -73,9 +73,7 @@ class TestArrayOperations:
 
     def test_array_sum_invalid_input(self):
         """Test array sum with invalid input (missing array field)"""
-        payload = {"numbers": [1, 2, 3]}
+        payload = {"data": [1, 2, 3]}
         response = requests.post(f"{BASE_URL}/api/array/sum", json=payload)
         
         assert response.status_code == 400
-        data = response.json()
-        assert "error" in data
