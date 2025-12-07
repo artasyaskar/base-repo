@@ -1,0 +1,58 @@
+diff --git a/server/index.js b/server/index.js
+index 7790528..e049fd5 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -44,6 +44,7 @@ app.use('/api/datastructures', require('./routes/datastructures'));
+ app.use('/api/algorithms', require('./routes/algorithms'));
+ app.use('/api/compiler', require('./routes/compiler'));
+ app.use('/api/users', require('./routes/users'));
++app.use('/api/string', require('./routes/string'));
+ 
+ // Health check endpoint
+ app.get('/api/health', (req, res) => {
+diff --git a/server/routes/string.js b/server/routes/string.js
+new file mode 100644
+index 0000000..3f07337
+--- /dev/null
++++ b/server/routes/string.js
+@@ -0,0 +1,40 @@
++const express = require('express');
++const router = express.Router();
++
++// POST /api/string/length - Calculate the length of a string
++router.post('/length', (req, res) => {
++  const { text } = req.body;
++  
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++  
++  const length = typeof text === 'string' ? text.length : 0;
++  res.json({ length });
++});
++
++// POST /api/string/uppercase - Convert string to uppercase
++router.post('/uppercase', (req, res) => {
++  const { text } = req.body;
++  
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++  
++  const uppercase = typeof text === 'string' ? text.toUpperCase() : '';
++  res.json({ uppercase });
++});
++
++// POST /api/string/first - Get the first character of a string
++router.post('/first', (req, res) => {
++  const { text } = req.body;
++  
++  if (text === undefined) {
++    return res.status(400).json({ error: 'Text field is required' });
++  }
++  
++  const first = typeof text === 'string' && text.length > 0 ? text[0] : null;
++  res.json({ first });
++});
++
++module.exports = router;
