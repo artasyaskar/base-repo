@@ -5,7 +5,7 @@ index 876d5c8..d9738ec 100644
 @@ -20,31 +20,41 @@ router.get('/', async (req, res) => {
        ];
      }
-
+ 
 -    const dataStructures = await DataStructure.find(filter)
 -      .populate('createdBy', 'username')
 -      .limit(limit * 1)
@@ -16,7 +16,7 @@ index 876d5c8..d9738ec 100644
 +    // Handle MongoDB connection issues by returning empty result
 +    const dataStructures = [];
 +    const total = 0;
-
+ 
      res.json({
        dataStructures,
        pagination: {
@@ -40,7 +40,7 @@ index 876d5c8..d9738ec 100644
 +    });
    }
  });
-
+ 
  // Get data structure by ID
  router.get('/:id', async (req, res) => {
    try {
@@ -52,11 +52,11 @@ index 876d5c8..d9738ec 100644
 +
      const dataStructure = await DataStructure.findById(req.params.id)
        .populate('createdBy', 'username');
-
+     
 @@ -170,25 +180,29 @@ router.get('/category/:category', async (req, res) => {
      const { category } = req.params;
      const { page = 1, limit = 10 } = req.query;
-
+ 
 -    const dataStructures = await DataStructure.find({ category })
 -      .populate('createdBy', 'username')
 -      .limit(limit * 1)
@@ -67,7 +67,7 @@ index 876d5c8..d9738ec 100644
 +    // Handle MongoDB connection issues by returning empty result
 +    const dataStructures = [];
 +    const total = 0;
-
+ 
      res.json({
        dataStructures,
        pagination: {
@@ -91,4 +91,4 @@ index 876d5c8..d9738ec 100644
 +    });
    }
  });
-
+ 
