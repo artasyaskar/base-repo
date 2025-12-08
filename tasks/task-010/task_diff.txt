@@ -8,7 +8,7 @@ index 7790528..3f1e286 100644
  app.use('/api/users', require('./routes/users'));
 +app.use('/api/file', require('./routes/file'));
 +app.use('/api/date', require('./routes/date'));
- 
+
  // Health check endpoint
  app.get('/api/health', (req, res) => {
 diff --git a/server/routes/date.js b/server/routes/date.js
@@ -23,58 +23,58 @@ index 0000000..6507e40
 +// Date difference calculation endpoint
 +router.post('/difference', (req, res) => {
 +  const { start_date, end_date } = req.body;
-+  
++
 +  if (!start_date) {
 +    return res.status(400).json({ error: 'start_date field is required' });
 +  }
-+  
++
 +  if (!end_date) {
 +    return res.status(400).json({ error: 'end_date field is required' });
 +  }
-+  
++
 +  const start = new Date(start_date);
 +  const end = new Date(end_date);
-+  
++
 +  if (isNaN(start.getTime()) || isNaN(end.getTime())) {
 +    return res.status(400).json({ error: 'Invalid date format' });
 +  }
-+  
++
 +  const days = Math.floor((end - start) / (1000 * 60 * 60 * 24));
-+  
++
 +  res.json({ days });
 +});
 +
 +// Date formatting endpoint
 +router.post('/format', (req, res) => {
 +  const { date } = req.body;
-+  
++
 +  if (!date) {
 +    return res.status(400).json({ error: 'date field is required' });
 +  }
-+  
++
 +  const dateObj = new Date(date);
-+  
++
 +  if (isNaN(dateObj.getTime())) {
 +    return res.status(400).json({ error: 'Invalid date format' });
 +  }
-+  
++
 +  const options = { year: 'numeric', month: 'long', day: 'numeric' };
 +  const formatted = dateObj.toLocaleDateString('en-US', options);
-+  
++
 +  res.json({ formatted });
 +});
 +
 +// Date validation endpoint
 +router.post('/valid', (req, res) => {
 +  const { date } = req.body;
-+  
++
 +  if (!date) {
 +    return res.status(400).json({ error: 'date field is required' });
 +  }
-+  
++
 +  const dateObj = new Date(date);
 +  const isValid = !isNaN(dateObj.getTime());
-+  
++
 +  res.json({ valid: isValid });
 +});
 +
