@@ -58,14 +58,14 @@ task_description: |
   All paths in server/index.js should work fine - meaning the app starts without issues
   The server/routes/users.js file must be there - also set up right - for things to run without hiccups
 
-  Test validation requirements:
-  Checks will reveal if the database fetches correct results - testing outputs with varied inputs, measuring how much comes back each time
-  Pagination's gotta match what's actually in the database - tests check that totalItems changes when filters change
-  Health checks should match the real-time clock - no more than a tiny fraction off. Also, uptime's got to be above nothing, so it only tallies how long it's been running since last started
-  Pick something else, see what changes - choose this path, find these details; pick another, everything flips around. Every decision leads somewhere fresh, never the same twice
-  The ObjectId check should manage correct formats without issues - though it'll catch wrong ones as well
-  Error messages should make it obvious what went wrong – that way you see right away which part didn't work
-  If crucial files aren't there, the server won't boot - bad setup stops it dead. Because settings are off, glitches show up quick instead of a clean start. Missing essential parts means you're stuck right at the beginning. Bad groundwork locks everything down before it even begins
+  Test validation limitations:
+  Tests can only check what the server returns - they can't see inside your code to verify how you built it
+  The health timestamp check can be fooled by just returning the current time, even if hardcoded
+  Pagination field validation only checks that fields exist, not that they come from real database counts
+  Category filtering tests only verify structure, not that actual MongoDB filtering occurred
+  The 404 test checks for invalid ID response but can't verify which validation method you used
+  Server startup and file structure requirements are necessary but not directly tested
+  Error message validation only checks status codes, not the actual error content
 
   Note on test coverage:
   The tests focus on endpoint responses and structure validation - they check what users see rather than how it's built inside
@@ -73,6 +73,7 @@ task_description: |
   The 404 test checks for invalid ID handling but doesn't verify the specific ObjectId validation method
   Server startup requirements and file structure are needed for functionality but aren't directly tested
   Error message content is expected but only the 404 status is actually validated in tests
+  Tests cannot prevent hardcoded responses or stubbed implementations - they only validate the final output
 
 difficulty: hard
 category: Feature
