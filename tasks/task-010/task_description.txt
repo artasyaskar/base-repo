@@ -1,0 +1,53 @@
+task_description: |
+  Task: Implement Date/Time Operations API
+
+  Instructions:
+  You could try a few basic date tasks in the C time handling section - build three new paths this way instead of that one
+
+  1. Go to POST /api/date/difference – calculate days between two dates
+  2. Head over to POST /api/date/format if you want to transform date display - converting dates to readable strings
+  3. Find out if a date is valid - use POST /api/date/valid to make it happen
+
+  Each stop sends over date information in JSON, but still points you the right way. Pick whatever path - either gets you there just fine.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have simple date features that would help pick C faster, even though it deals with several time operations together.
+
+  Steps:
+  1. Create a new route file - name it server/routes/date.js
+  2. Set up three roles tackling date tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
+  3. Go straight to server/index.js - no need to search folders
+  4. Look at the words, notice issues but stay calm
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The difference endpoint pulls two dates, then sends out the days between them
+  The format endpoint returns outcomes in readable date format instead of raw input
+  The valid endpoint checks if dates make sense by scanning each part one after another; once a date clears the test, it keeps going - dropping impossible ones along the way until just the valid remains
+  - If dates are the same, difference gives back 0
+  Check if the start_date field exists for the difference endpoint
+
+  Technical requirements:
+  - Use Express.js for routing
+  Show clear error details – use the correct HTTP status code
+  See if the start_date exists - hurry past when it's gone
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  - Consistent JSON formatting
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a POST to /api/date/difference returns {"days": 5} when given {"start_date": "2024-01-01", "end_date": "2024-01-06"}
+  - Sending a POST to /api/date/difference returns {"days": 0} if the dates are the same
+  - Sending a POST to /api/date/difference breaks with 400 if no start_date is there
+  Hitting /api/date/format via POST with {"date": "2024-01-15"} gives back {"formatted": "January 15, 2024"}
+  Sending a POST request to /api/date/valid with {"date": "2024-02-29"} returns {"valid": true}
+  Note: Error handling tests only cover missing start_date field for difference endpoint
+
+difficulty: hard
+category: Feature
+tags: [date, time, operations, api, express]
+parser_name: pytest
