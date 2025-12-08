@@ -23,14 +23,13 @@ task_description: |
   Expected functionality:
   The difference endpoint pulls two dates, then sends out the days between them
   The format endpoint returns outcomes in readable date format instead of raw input
-  The valid endpoint checks if dates make sense by scanning each part one after another; once a date clears the test, it keeps going - dropping impossible ones along the way until just the valid remains
+  The valid endpoint checks if dates are valid using JavaScript Date validation
   - If dates are the same, difference gives back 0
   Check if the start_date field exists for the difference endpoint
 
   Technical requirements:
   - Use Express.js for routing
-  Show clear error details – use the correct HTTP status code
-  See if the start_date exists - hurry past when it's gone
+  Return correct HTTP status codes for tested situations
   {"response": "Give back JSON replies using the same setup every time"}
 
   Success criteria:
