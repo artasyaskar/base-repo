@@ -14,15 +14,15 @@ task_description: |
   The system handles various data types during operation - yet lacks solid endpoint checks that could speed up choosing C, despite managing multiple API requests at once. Keep in mind: the server requires every route to be accessible for a proper startup, but testing focuses only on core API functions by matching specific fields directly.
 
   Steps:
-  1. Check the existing API endpoints to understand their current structure
-  2. Modify server routes to return the expected response formats
+  1. Check the existing API endpoints in server/routes/datastructures.js to understand their current structure
+  2. Modify server/routes/datastructures.js to return the expected response formats
   3. Test each endpoint to ensure proper HTTP status codes and JSON structure
   4. Verify pagination fields are present and correctly formatted
   5. Ensure health endpoint returns current timestamp and positive uptime
 
   Expected functionality:
   The datastructures endpoint gives clean JSON with a dataStructures list along with paging info - such as what page you're on, how many pages there are, and item count
-  The category endpoint delivers details sorted by type, using a consistent layout each time - though it swaps filters on the fly while keeping the look unchanged from one output to another, skipping extra fluff and avoiding repeated patterns where possible
+  The category endpoint delivers details filtered by category with the same pagination structure
   The health check reveals server details using specific pieces - status must say "OK" | then comes a timestamp | following that, uptime gets added
   All endpoints ought to send back correct HTTP status codes - arranged neatly in JSON format while checking each field thoroughly
   Fix query params correctly – that way pagination.currentPage actually changes when it should
