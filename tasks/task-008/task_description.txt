@@ -47,33 +47,26 @@ task_description: |
   - Hitting /api/datastructures with wrong queries gives 200 OK but keeps proper format anyway
   Note: Tests target specific areas - checking reply structure along real API routes
 
-  Implementation guidance:
-  You'd better run real database calls in server/routes/datastructures.js instead of sticking with fixed replies
-  The datastructures endpoint needs to pull info straight from the db - using DataStructure.find() - though just when correct filters are set
-  Opting by category should trigger actual MongoDB queries, using the type details as a condition instead of
-  The ObjectId check needs mongoose.Types.ObjectId.isValid() since this method actually verifies IDs correctly
-  A health check shows the current server status – it runs a live timer alongside how long the system's been up
-  Pagination math works only with real database numbers - skip fake data
-  Query params need to break down right - from there, feed them into database queries without hiccups
-  All paths in server/index.js should work fine - meaning the app starts without issues
-  The server/routes/users.js file must be there - also set up right - for things to run without hiccups
+  What tests actually validate:
+  Tests only check what the server sends back - they look at HTTP status codes and JSON structure
+  Health endpoint tests verify the timestamp is close to current time and uptime is positive
+  Pagination tests check that required fields exist and have correct types
+  Category filtering tests verify the endpoint returns proper structure
+  The 404 test only checks that invalid IDs return 404 status
+  Query parameter tests verify that pagination.currentPage reflects the requested page
+  Tests cannot verify how you implement these features - only that the final responses are correct
 
-  Test validation limitations:
-  Tests can only check what the server returns - they can't see inside your code to verify how you built it
-  The health timestamp check can be fooled by just returning the current time, even if hardcoded
-  Pagination field validation only checks that fields exist, not that they come from real database counts
-  Category filtering tests only verify structure, not that actual MongoDB filtering occurred
-  The 404 test checks for invalid ID response but can't verify which validation method you used
-  Server startup and file structure requirements are necessary but not directly tested
-  Error message validation only checks status codes, not the actual error content
+  Implementation notes:
+  You can implement these endpoints however you want - hardcoded responses, database calls, or mixed approaches
+  The tests don't check your implementation method, only the final output
+  Server startup requires existing route files to be present and properly configured
+  Error handling should return appropriate status codes but exact error messages aren't validated
+  The health timestamp needs to be current but can be generated however you prefer
 
-  Note on test coverage:
-  The tests focus on endpoint responses and structure validation - they check what users see rather than how it's built inside
-  Tests verify that pagination fields exist and query parameters work, but don't check the exact database methods used
-  The 404 test checks for invalid ID handling but doesn't verify the specific ObjectId validation method
-  Server startup requirements and file structure are needed for functionality but aren't directly tested
-  Error message content is expected but only the 404 status is actually validated in tests
-  Tests cannot prevent hardcoded responses or stubbed implementations - they only validate the final output
+  Important limitation:
+  These tests can be satisfied with hardcoded or stubbed responses - they only validate response shapes and values
+  The tests cannot distinguish between real database queries and fake data
+  Implementation quality is not measured - only endpoint correctness matters for passing tests
 
 difficulty: hard
 category: Feature
