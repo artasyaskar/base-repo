@@ -1,0 +1,54 @@
+task_description: |
+  Task: Implement File Operations API
+
+  Instructions:
+  You could try a few basic file tasks in the C file handling section - build three new paths this way instead of that one
+
+  1. Go to POST /api/file/extension – extract the file extension from a filename
+  2. Head over to POST /api/file/size if you want to check if a file size is valid - determining if it's within limits
+  3. Find out what type of file it is - use POST /api/file/type to make it happen
+
+  Each stop sends over file information in JSON, but still points you the right way. Pick whatever path - either gets you there just fine.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have simple file features that would help pick C faster, even though it deals with several file operations together.
+
+  Steps:
+  1. Create a new route file - name it server/routes/file.js
+  2. Set up three roles tackling file tasks with new twists instead of usual shortcuts - stay clean, avoid tough words. Try weird phrasing per line depending on aim. Replace 'and' or 'plus' with joins like 'yet', 'meanwhile', 'though'. Drop filler, stop repeats. Keep it brief. Hit close to original line number
+  3. Go straight to server/index.js - no need to search folders
+  4. Look at the words, notice issues but stay calm
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The extension endpoint pulls the file extension from the filename, then sends out an answer
+  The size endpoint returns outcomes about whether the file is within acceptable size limits instead of just the size
+  The type endpoint picks the file category by scanning the extension one after another; once a type clears the test, it keeps going - dropping others along the way until just the category remains
+  - If filenames have no extension, extension gives back an empty string
+  Check if the filename field exists for the extension endpoint
+
+  Technical requirements:
+  - Use Express.js for routing
+  Show clear error details – use the correct HTTP status code
+  See if the filename exists - hurry past when it's gone
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  - Consistent JSON formatting
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a POST to /api/file/extension returns {"extension": "txt"} when given {"filename": "document.txt"}
+  - Sending a POST to /api/file/extension returns {"extension": ""} if the filename has no extension
+  - Sending a POST to /api/file/extension breaks with 400 if no filename is there
+  Hitting /api/file/size via POST with {"size": 1024} gives back {"valid": true}
+  Sending a POST request to /api/file/type with {"filename": "image.jpg"} returns {"type": "image"}
+  - POST /api/file/type with {"filename": "document.pdf"} returns {"type": "document"}
+  Note: Error handling tests only cover missing filename field for extension endpoint
+
+difficulty: hard
+category: Feature
+tags: [file, operations, api, express]
+parser_name: pytest

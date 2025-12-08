@@ -1,0 +1,68 @@
+diff --git a/server/index.js b/server/index.js
+index 7790528..9040826 100644
+--- a/server/index.js
++++ b/server/index.js
+@@ -44,6 +44,7 @@ app.use('/api/datastructures', require('./routes/datastructures'));
+ app.use('/api/algorithms', require('./routes/algorithms'));
+ app.use('/api/compiler', require('./routes/compiler'));
+ app.use('/api/users', require('./routes/users'));
++app.use('/api/file', require('./routes/file'));
+ 
+ // Health check endpoint
+ app.get('/api/health', (req, res) => {
+diff --git a/server/routes/file.js b/server/routes/file.js
+new file mode 100644
+index 0000000..7d9f7be
+--- /dev/null
++++ b/server/routes/file.js
+@@ -0,0 +1,50 @@
++const express = require('express');
++const router = express.Router();
++
++// File extension extraction endpoint
++router.post('/extension', (req, res) => {
++  const { filename } = req.body;
++  
++  if (!filename) {
++    return res.status(400).json({ error: 'filename field is required' });
++  }
++  
++  const parts = filename.split('.');
++  const extension = parts.length > 1 ? parts[parts.length - 1] : '';
++  
++  res.json({ extension });
++});
++
++// File size validation endpoint
++router.post('/size', (req, res) => {
++  const { size } = req.body;
++  
++  // Consider files under 1MB as valid
++  const isValid = size && size < 1048576;
++  
++  res.json({ valid: isValid });
++});
++
++// File type detection endpoint
++router.post('/type', (req, res) => {
++  const { filename } = req.body;
++  
++  if (!filename) {
++    return res.status(400).json({ error: 'filename field is required' });
++  }
++  
++  const extension = filename.split('.').pop().toLowerCase();
++  
++  const imageTypes = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
++  const documentTypes = ['pdf', 'doc', 'docx', 'txt', 'rtf'];
++  const videoTypes = ['mp4', 'avi', 'mov', 'wmv', 'flv'];
++  
++  let type = 'unknown';
++  if (imageTypes.includes(extension)) type = 'image';
++  else if (documentTypes.includes(extension)) type = 'document';
++  else if (videoTypes.includes(extension)) type = 'video';
++  
++  res.json({ type });
++});
++
++module.exports = router;
