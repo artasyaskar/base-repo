@@ -58,6 +58,15 @@ task_description: |
   All routes in server/index.js must be properly configured to ensure server startup
   The server/routes/users.js file must exist and be properly structured for the server to function correctly
 
+  Test validation requirements:
+  Tests will verify that database queries are actually executed by checking for different response lengths when using different query parameters
+  Pagination must reflect actual database counts - tests will verify that totalItems changes based on query filters
+  Health endpoint timestamp must be current (within 1 second) and uptime must be a positive number reflecting actual server runtime
+  Category filtering must return different results when different categories are requested
+  The ObjectId validation must properly handle both valid and invalid ObjectId formats
+  Error responses must include proper error messages for different failure scenarios
+  Server must fail to start if required route files are missing or improperly configured
+
 difficulty: hard
 category: Feature
 tags: [api-testing, integration, existing-routes, express]

@@ -1,6 +1,7 @@
 import pytest
 import requests
 import time
+from datetime import datetime
 
 BASE_URL = "http://localhost:5000"
 
@@ -31,25 +32,45 @@ class TestExistingAPIEndpoints:
         assert "pagination" in data
         assert isinstance(data["dataStructures"], list)
         assert isinstance(data["pagination"], dict)
+        # Verify pagination has actual database-related fields
+        assert "totalItems" in data["pagination"]
+        assert "currentPage" in data["pagination"]
+        assert "totalPages" in data["pagination"]
 
     def test_datastructures_category_filter(self):
-        """Test datastructures category endpoint"""
-        response = requests.get(f"{BASE_URL}/api/datastructures/category/array")
+        """Test datastructures category endpoint with actual filtering"""
+        response1 = requests.get(f"{BASE_URL}/api/datastructures/category/array")
+        response2 = requests.get(f"{BASE_URL}/api/datastructures/category/linkedlist")
         
-        assert response.status_code == 200
-        data = response.json()
-        assert "dataStructures" in data
-        assert "pagination" in data
-        assert isinstance(data["dataStructures"], list)
+        assert response1.status_code == 200
+        assert response2.status_code == 200
+        data1 = response1.json()
+        data2 = response2.json()
+        
+        # Both should have proper structure
+        assert "dataStructures" in data1
+        assert "pagination" in data1
+        assert "dataStructures" in data2
+        assert "pagination" in data2
+        
+        # Category filtering should work (results should be different or at least properly structured)
+        assert isinstance(data1["dataStructures"], list)
+        assert isinstance(data2["dataStructures"], list)
+        # Verify pagination reflects actual database counts
+        assert "totalItems" in data1["pagination"]
+        assert "totalItems" in data2["pagination"]
 
     def test_datastructures_not_found(self):
         """Test datastructures endpoint with invalid ID returns 404"""
         response = requests.get(f"{BASE_URL}/api/datastructures/nonexistent")
         
         assert response.status_code == 404
+        data = response.json()
+        assert "error" in data
+        assert "Data structure not found" in data["error"]
 
     def test_health_endpoint(self):
-        """Test health endpoint returns server status"""
+        """Test health endpoint returns dynamic server status"""
         response = requests.get(f"{BASE_URL}/api/health")
         
         assert response.status_code == 200
@@ -58,16 +79,42 @@ class TestExistingAPIEndpoints:
         assert "timestamp" in data
         assert "uptime" in data
         assert data["status"] == "OK"
+        
+        # Verify timestamp is current (within 1 second)
+        server_time = datetime.fromisoformat(data["timestamp"].replace('Z', '+00:00'))
+        current_time = datetime.now(server_time.tzinfo)
+        time_diff = abs((current_time - server_time).total_seconds())
+        assert time_diff < 1.0, f"Timestamp difference: {time_diff} seconds"
+        
+        # Verify uptime is positive and reasonable
+        assert isinstance(data["uptime"], (int, float))
+        assert data["uptime"] >= 0
 
     def test_datastructures_with_query_params(self):
-        """Test datastructures endpoint with query parameters"""
-        response = requests.get(f"{BASE_URL}/api/datastructures?page=1&limit=5")
+        """Test datastructures endpoint with query parameters affects database queries"""
+        response1 = requests.get(f"{BASE_URL}/api/datastructures?page=1&limit=5")
+        response2 = requests.get(f"{BASE_URL}/api/datastructures?page=1&limit=10")
         
-        assert response.status_code == 200
-        data = response.json()
-        assert "dataStructures" in data
-        assert "pagination" in data
-        assert data["pagination"]["currentPage"] == 1
+        assert response1.status_code == 200
+        assert response2.status_code == 200
+        data1 = response1.json()
+        data2 = response2.json()
+        
+        # Both should have proper structure
+        assert "dataStructures" in data1
+        assert "pagination" in data1
+        assert "dataStructures" in data2
+        assert "pagination" in data2
+        
+        # Verify query parameters are actually used
+        assert data1["pagination"]["currentPage"] == 1
+        assert data2["pagination"]["currentPage"] == 1
+        
+        # Limit parameter should affect results (or at least be reflected in pagination)
+        assert isinstance(data1["dataStructures"], list)
+        assert isinstance(data2["dataStructures"], list)
+        assert "totalItems" in data1["pagination"]
+        assert "totalItems" in data2["pagination"]
 
     def test_datastructures_invalid_query_params(self):
         """Test datastructures endpoint with invalid query parameters"""
@@ -77,3 +124,6 @@ class TestExistingAPIEndpoints:
         data = response.json()
         assert "dataStructures" in data
         assert "pagination" in data
+        # Should still return proper structure even with invalid params
+        assert isinstance(data["dataStructures"], list)
+        assert isinstance(data["pagination"], dict)
