@@ -42,9 +42,9 @@ task_description: |
   Hitting /api/echo/number via POST with {"value": 42} gives back {"echo": 42}
   Sending a POST request to /api/echo/match with {"a": "test", "b": "test"} returns {"match": true}
   - POST /api/echo/match with {"a": "test", "b": "no"} returns {"match": false}
-  Note: Error handling only tested for text endpoint missing field
+  Note: Error handling only tested for text endpoint missing field. Empty strings are not tested.
 
-difficulty: hard
+difficulty: easy
 category: Feature
 tags: [echo, basic-operations, api, express]
 parser_name: pytest

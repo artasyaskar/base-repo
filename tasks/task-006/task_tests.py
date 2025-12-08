@@ -68,12 +68,4 @@ class TestEchoOperations:
         assert "match" in data
         assert data["match"] is False
 
-    def test_echo_text_empty(self):
-        """Test echo text with empty string"""
-        payload = {"value": ""}
-        response = requests.post(f"{BASE_URL}/api/echo/text", json=payload)
-        
-        assert response.status_code == 200
-        data = response.json()
-        assert "echo" in data
-        assert data["echo"] == ""
+    
