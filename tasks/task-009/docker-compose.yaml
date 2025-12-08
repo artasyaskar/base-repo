@@ -3,8 +3,8 @@ services:
     build:
       context: ../..
       dockerfile: Dockerfile
-    image: c-ds-algo-platform:task-008
-    command: ["./tasks/task-008/run-tests.sh"]
+    image: c-ds-algo-platform:task-009
+    command: ["./tasks/task-009/run-tests.sh"]
     volumes:
       - ../..:/app
     working_dir: /app
