@@ -47,8 +47,8 @@ task_description: |
   - Hitting /api/datastructures with wrong queries gives 200 OK but keeps proper format anyway
   Note: Tests target specific areas - checking reply structure along real API routes
 
-  Implementation requirements:
-  You’d better run real database calls in server/routes/datastructures.js instead of sticking with fixed replies
+  Implementation guidance:
+  You'd better run real database calls in server/routes/datastructures.js instead of sticking with fixed replies
   The datastructures endpoint needs to pull info straight from the db - using DataStructure.find() - though just when correct filters are set
   Opting by category should trigger actual MongoDB queries, using the type details as a condition instead of
   The ObjectId check needs mongoose.Types.ObjectId.isValid() since this method actually verifies IDs correctly
@@ -60,12 +60,19 @@ task_description: |
 
   Test validation requirements:
   Checks will reveal if the database fetches correct results - testing outputs with varied inputs, measuring how much comes back each time
-  Pagination’s gotta match what's actually in the database - tests check that totalItems changes when filters change
-  Health checks should match the real-time clock - no more than a tiny fraction off. Also, uptime’s got to be above nothing, so it only tallies how long it's been running since last started
+  Pagination's gotta match what's actually in the database - tests check that totalItems changes when filters change
+  Health checks should match the real-time clock - no more than a tiny fraction off. Also, uptime's got to be above nothing, so it only tallies how long it's been running since last started
   Pick something else, see what changes - choose this path, find these details; pick another, everything flips around. Every decision leads somewhere fresh, never the same twice
-  The ObjectId check should manage correct formats without issues - though it’ll catch wrong ones as well
+  The ObjectId check should manage correct formats without issues - though it'll catch wrong ones as well
   Error messages should make it obvious what went wrong – that way you see right away which part didn't work
   If crucial files aren't there, the server won't boot - bad setup stops it dead. Because settings are off, glitches show up quick instead of a clean start. Missing essential parts means you're stuck right at the beginning. Bad groundwork locks everything down before it even begins
+
+  Note on test coverage:
+  The tests focus on endpoint responses and structure validation - they check what users see rather than how it's built inside
+  Tests verify that pagination fields exist and query parameters work, but don't check the exact database methods used
+  The 404 test checks for invalid ID handling but doesn't verify the specific ObjectId validation method
+  Server startup requirements and file structure are needed for functionality but aren't directly tested
+  Error message content is expected but only the 404 status is actually validated in tests
 
 difficulty: hard
 category: Feature
