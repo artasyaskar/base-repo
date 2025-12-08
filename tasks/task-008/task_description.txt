@@ -14,11 +14,11 @@ task_description: |
   The system handles various data types during operation - yet lacks solid endpoint checks that could speed up choosing C, despite managing multiple API requests at once. Keep in mind: the server requires every route to be accessible for a proper startup, but testing focuses only on core API functions by matching specific fields directly.
 
   Steps:
-  1. Take a look at the server/routes/datastructures.js file right now – see how it shapes answers. Match that style exactly. Follow real validation rules instead of guessing
-  2. Check that server/routes/users.js is set up right so the app starts without issues
-  3. Head directly to server/index.js - skip hunting through each folder
-  4. See whether every route’s correctly configured - perhaps it can be accessed already
-  5. Begin wherever feels right, try different tricks while moving ahead
+  1. Check the existing API endpoints to understand their current structure
+  2. Modify server routes to return the expected response formats
+  3. Test each endpoint to ensure proper HTTP status codes and JSON structure
+  4. Verify pagination fields are present and correctly formatted
+  5. Ensure health endpoint returns current timestamp and positive uptime
 
   Expected functionality:
   The datastructures endpoint gives clean JSON with a dataStructures list along with paging info - such as what page you're on, how many pages there are, and item count
@@ -59,7 +59,6 @@ task_description: |
   Implementation notes:
   You can implement these endpoints however you want - hardcoded responses, database calls, or mixed approaches
   The tests don't check your implementation method, only the final output
-  Server startup requires existing route files to be present and properly configured
   Error handling should return appropriate status codes but exact error messages aren't validated
   The health timestamp needs to be current but can be generated however you prefer
 
