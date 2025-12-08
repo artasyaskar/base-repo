@@ -1,0 +1,51 @@
+task_description: |
+  Task: Test Existing API Endpoints
+
+  Instructions:
+  You could try a few basic API testing tricks in the C integration section - test existing paths this way instead of creating new ones
+
+  1. Go to GET /api/datastructures – check if the API returns proper structure
+  2. Head over to GET /api/datastructures/category/array if you want to test category filtering
+  3. Find if health endpoint works - use GET /api/health to make it happen
+
+  Each stop checks existing API responses, but still points you the right way.
+
+  Background:
+  The system works with different kinds of info while running - still doesn't have proper endpoint testing that would help pick C faster, even though it deals with several API calls together. Note: The server needs all existing routes to start properly, but tests only check basic API functionality.
+
+  Steps:
+  1. Check existing server/routes/datastructures.js for proper responses
+  2. Verify server/routes/users.js has proper structure
+  3. Go straight to server/index.js - no need to search folders
+  4. Check if all routes are properly configured
+  5. Start at each spot, testing various ways in
+
+  Expected functionality:
+  The datastructures endpoint returns proper JSON structure with dataStructures array and pagination object
+  The category endpoint returns filtered data structures by category
+  The health endpoint returns server status information
+  All endpoints should return proper HTTP status codes and JSON structure
+
+  Technical requirements:
+  - Use existing Express.js routes
+  Return correct HTTP status codes for different situations
+  {"response": "Give back JSON replies using the same setup every time"}
+
+  Success criteria:
+  All three speak plainly - though their heads tick in separate ways: one moves slow and steady, the next leaps around ideas, whereas the last double-checks along the way - but still, each hits the mark, never missing
+  Sort out mistakes without stress if facts aren't right
+  Fits right into your day - no stress, everything flows naturally after that
+
+  Critical tested requirements:
+  Sending a GET to /api/datastructures returns status 200 with proper JSON structure
+  - Sending a GET to /api/datastructures/category/array returns status 200 with category filter
+  - Sending a GET to /api/datastructures/nonexistent returns status 404
+  Hitting /api/health via GET gives back status 200 with server status
+  Sending a GET request to /api/datastructures with query parameters returns status 200
+  - GET /api/datastructures with invalid query parameters still returns status 200
+  Note: Tests focus on existing endpoint structure and response formats
+
+difficulty: hard
+category: Feature
+tags: [api-testing, integration, existing-routes, express]
+parser_name: pytest
