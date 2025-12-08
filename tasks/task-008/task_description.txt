@@ -47,6 +47,17 @@ task_description: |
   - GET /api/datastructures with invalid query parameters still returns status 200 with proper structure
   Note: Tests focus on exact field validation and response formats for existing endpoints
 
+  Implementation requirements:
+  You must implement genuine database interactions in server/routes/datastructures.js rather than hardcoded responses
+  The datastructures endpoint should actually query the database using DataStructure.find() with proper filters
+  Category filtering must use real MongoDB queries with the category parameter
+  The ObjectId validation should use mongoose.Types.ObjectId.isValid() for proper ID checking
+  Health endpoint should return dynamic server information including current timestamp and actual uptime
+  Pagination calculations should be based on actual database count results, not fixed values
+  Query parameters must be properly parsed and used in database queries
+  All routes in server/index.js must be properly configured to ensure server startup
+  The server/routes/users.js file must exist and be properly structured for the server to function correctly
+
 difficulty: hard
 category: Feature
 tags: [api-testing, integration, existing-routes, express]
